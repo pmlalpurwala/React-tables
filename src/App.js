@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Screen1 from "./components/Screen1";
+import { useState, useEffect } from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 function App() {
+  const [person, setPerson] = useState([
+    {
+      name: "Rajat1",
+      age: 24,
+      friends: "ricky",
+    },
+    {
+      name: "Rajat2",
+      age: 34,
+      friends: "ricky",
+    },
+    {
+      name: "Rajat3",
+      age: 34,
+      friends: "ricky",
+    },
+  ]);
+
+  const [currentScreen, setCurrentScreen] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("data") != null) {
+      setPerson(JSON.parse(localStorage.getItem("data")));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(person));
+  }, [person]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Screen1
+        person={person}
+        setPerson={setPerson}
+        currentScreen={currentScreen}
+        setCurrentScreen={setCurrentScreen}
+      />
     </div>
   );
 }
