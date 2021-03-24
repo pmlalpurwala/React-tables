@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+//import { useState } from "react";
 import Persondata from "./Persondata";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 const Screen1 = ({ person, setPerson, currentScreen, setCurrentScreen }) => {
